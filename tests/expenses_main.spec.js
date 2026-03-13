@@ -1,20 +1,14 @@
 // expenses_main.spec.js — tests for server_main.js
-// Run with: npx playwright test expenses_main.spec.js --headed
 
 const { test, expect } = require('@playwright/test');
 
 const BASE = 'http://localhost:3000';
 const API  = `${BASE}/api/expenses`;
 
-// ── Reset store before each test ─────────────────────────
+// Reset store before each test
 test.beforeEach(async ({ request }) => {
   await request.delete(API);
 });
-
-
-// ════════════════════════════════════════════════════════
-//  UI TESTS  (browser)
-// ════════════════════════════════════════════════════════
 
 test.describe('UI', () => {
 
@@ -141,11 +135,6 @@ test.describe('UI', () => {
   });
 
 });
-
-
-// ════════════════════════════════════════════════════════
-//  API TESTS  (no browser)
-// ════════════════════════════════════════════════════════
 
 test.describe('API', () => {
 

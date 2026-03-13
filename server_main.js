@@ -5,20 +5,19 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 
-// ── Serve the interactive frontend ──────────────────────
+//Serve the interactive frontend 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend_ui.html'));
 });
 
-// ── In-memory store ──────────────────────────────────────
+//In-memory store
 let expenses = [];
 
 function findExpense(id) {
   return expenses.find(e => e.id === id);
 }
 
-// ── API Routes ───────────────────────────────────────────
-
+//API Routes
 app.get('/api/expenses', (req, res) => {
   const { category } = req.query;
   const result = category
@@ -89,7 +88,7 @@ app.delete('/api/expenses', (req, res) => {
   res.status(204).send();
 });
 
-// ── Start ─────────────────────────────────────────────────
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`\n  💸 Expense Tracker running at http://localhost:${PORT}`);
